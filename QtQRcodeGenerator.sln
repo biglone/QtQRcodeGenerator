@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QtQRcodeGenerator", "QtQRcodeGenerator\QtQRcodeGenerator.vcxproj", "{362F5CB8-07D8-419F-9CAD-B13B93609945}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1DEFC847-8A6C-415A-AC93-20C8D7B972AA} = {1DEFC847-8A6C-415A-AC93-20C8D7B972AA}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibQREncode", "LibQREncode\LibQREncode.vcxproj", "{1DEFC847-8A6C-415A-AC93-20C8D7B972AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{362F5CB8-07D8-419F-9CAD-B13B93609945}.Debug|Win32.ActiveCfg = Debug|Win32
+		{362F5CB8-07D8-419F-9CAD-B13B93609945}.Debug|Win32.Build.0 = Debug|Win32
+		{362F5CB8-07D8-419F-9CAD-B13B93609945}.Release|Win32.ActiveCfg = Release|Win32
+		{362F5CB8-07D8-419F-9CAD-B13B93609945}.Release|Win32.Build.0 = Release|Win32
+		{1DEFC847-8A6C-415A-AC93-20C8D7B972AA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1DEFC847-8A6C-415A-AC93-20C8D7B972AA}.Debug|Win32.Build.0 = Debug|Win32
+		{1DEFC847-8A6C-415A-AC93-20C8D7B972AA}.Release|Win32.ActiveCfg = Release|Win32
+		{1DEFC847-8A6C-415A-AC93-20C8D7B972AA}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		Qt5Version = $(DefaultQtVersion)
+	EndGlobalSection
+EndGlobal

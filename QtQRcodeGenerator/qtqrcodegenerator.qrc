@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/QtQRcodeGenerator"/>
+    <qresource prefix="/translator">
+        <file>qtqrcodegenerator_zh.qm</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="color.png">images/color.png</file>
+        <file alias="down.png">images/down.png</file>
+        <file alias="up.png">images/up.png</file>
+        <file>icon.png</file>
+    </qresource>
+</RCC>
