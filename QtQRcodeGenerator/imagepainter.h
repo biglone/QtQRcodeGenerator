@@ -23,7 +23,7 @@ public:
 
 	bool isSavingPathExist(const QString path);
 
-	void generateBGImage(const QSize &imageSize = QSize(280, 320), const QColor &color = QColor(255, 255, 255));
+	void generateBGImage(const QSize &imageSize = QSize(300, 300), const QColor &color = QColor(255, 255, 255));
 
 	void drawQRcode();
 

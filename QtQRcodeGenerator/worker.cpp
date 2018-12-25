@@ -62,7 +62,7 @@ void Worker::process()
 			return;
 		}
 		imagePainter.drawQRcode();
-		imagePainter.drawText();
+		//imagePainter.drawText();
 		imagePainter.setSavingPath(m_savingPath);
 		if (imagePainter.saveImage())
 		{
