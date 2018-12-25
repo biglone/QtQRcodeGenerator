@@ -55,10 +55,43 @@ void QRcodeBatchGenerator::createDirectory()
 	m_path = dir.path();
 }
 
+void QRcodeBatchGenerator::removeDirectory()
+{
+	QDir createdDir(m_path);
+	if (createdDir.exists())
+	{
+		createdDir.removeRecursively();
+	}
+}
+
+void QRcodeBatchGenerator::dealWithErrors(const QString &errString)
+{
+	if (!errString.isEmpty())
+	{
+		showErrors(errString);
+	}
+	
+	removeDirectory();
+	reset();
+}
+
+void QRcodeBatchGenerator::showErrors(const QString &errString)
+{
+	if (!errString.isEmpty())
+	{
+		QMessageBox::information(this, tr("Tip"), errString);
+	}
+}
+
+void QRcodeBatchGenerator::reset()
+{
+	m_inOperating = false;
+}
+
 void QRcodeBatchGenerator::onError(const QString &errorString)
 {
 	// todo
-	QMessageBox::information(this, tr("Tip"), errorString);
+	dealWithErrors(errorString);
 }
 
 void QRcodeBatchGenerator::onFinished()
@@ -88,34 +121,34 @@ void QRcodeBatchGenerator::on_pushButtonGenerate_clicked()
 
 	if (startId.isEmpty() || num.isEmpty())
 	{
-		QMessageBox::information(this, tr("Tip"), tr("start ID and generate num can not be empty"));
+		dealWithErrors(tr("start ID and generate num can not be empty"));
 		return;
 	}
-	
+
 	bool toIntOk = true;
-	int nStartId = startId.toInt(&toIntOk);
+	qint64 nStartId = startId.toLongLong(&toIntOk, 10);
 	if (!toIntOk)
 	{
-		QMessageBox::information(this, tr("Tip"), tr("please make sure that start ID is pure number"));
+		dealWithErrors(tr("please make sure that start ID is pure number"));
 		return;
 	}
 
 	int nNum = num.toInt(&toIntOk);
 	if (!toIntOk)
 	{
-		QMessageBox::information(this, tr("Tip"), tr("please make sure that generate count is pure number"));
+		dealWithErrors(tr("please make sure that generate count is pure number"));
 		return;
 	}
 
 	if (nStartId < 0)
 	{
-		QMessageBox::information(this, tr("Tip"), tr("start ID can not be minus"));
+		dealWithErrors(tr("start ID can not be minus"));
 		return;
 	}
 
 	if (nNum <= 0)
 	{
-		QMessageBox::information(this, tr("Tip"), tr("generate num should be positive"));
+		dealWithErrors(tr("generate num should be positive"));
 		return;
 	}
 

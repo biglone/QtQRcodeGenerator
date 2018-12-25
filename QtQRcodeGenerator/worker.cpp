@@ -47,9 +47,9 @@ void Worker::process()
 	header.append("file name\n");
 	textStream << header;
 
-	int nStartId = m_startId.toInt();
+	qint64 nStartId = m_startId.toLongLong();
 
-	for(int i = nStartId; i < m_generateCount + nStartId; ++i)
+	for(qint64 i = nStartId; i < m_generateCount + nStartId; ++i)
 	{
 		int width = m_startId.length();
 		QString id = QString("%1").arg(i, width, 10, QLatin1Char('0'));

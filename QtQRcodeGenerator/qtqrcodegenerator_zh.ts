@@ -44,43 +44,38 @@
         <translation>二维码</translation>
     </message>
     <message>
-        <location filename="qrcodebatchgenerator.cpp" line="61"/>
-        <location filename="qrcodebatchgenerator.cpp" line="79"/>
-        <location filename="qrcodebatchgenerator.cpp" line="91"/>
-        <location filename="qrcodebatchgenerator.cpp" line="99"/>
-        <location filename="qrcodebatchgenerator.cpp" line="106"/>
+        <location filename="qrcodebatchgenerator.cpp" line="82"/>
         <location filename="qrcodebatchgenerator.cpp" line="112"/>
-        <location filename="qrcodebatchgenerator.cpp" line="118"/>
         <source>Tip</source>
         <translation>提示</translation>
     </message>
     <message>
-        <location filename="qrcodebatchgenerator.cpp" line="79"/>
+        <location filename="qrcodebatchgenerator.cpp" line="112"/>
         <source>It&apos;s working now, please wait.</source>
         <translation>正在生成中，请稍候</translation>
     </message>
     <message>
-        <location filename="qrcodebatchgenerator.cpp" line="91"/>
+        <location filename="qrcodebatchgenerator.cpp" line="124"/>
         <source>start ID and generate num can not be empty</source>
         <translation>起始ID和生成数目不能为空</translation>
     </message>
     <message>
-        <location filename="qrcodebatchgenerator.cpp" line="99"/>
+        <location filename="qrcodebatchgenerator.cpp" line="132"/>
         <source>please make sure that start ID is pure number</source>
         <translation>请确保输入的起始ID为纯数字</translation>
     </message>
     <message>
-        <location filename="qrcodebatchgenerator.cpp" line="106"/>
+        <location filename="qrcodebatchgenerator.cpp" line="139"/>
         <source>please make sure that generate count is pure number</source>
         <translation>请确保输入的生成个数为纯数字</translation>
     </message>
     <message>
-        <location filename="qrcodebatchgenerator.cpp" line="112"/>
+        <location filename="qrcodebatchgenerator.cpp" line="145"/>
         <source>start ID can not be minus</source>
         <translation>生成ID不能为负数</translation>
     </message>
     <message>
-        <location filename="qrcodebatchgenerator.cpp" line="118"/>
+        <location filename="qrcodebatchgenerator.cpp" line="151"/>
         <source>generate num should be positive</source>
         <translation>生成个数必须为正整数</translation>
     </message>
