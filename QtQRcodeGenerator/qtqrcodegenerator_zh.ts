@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
+    <name>ImagePainter</name>
+    <message>
+        <location filename="imagepainter.cpp" line="122"/>
+        <source>saving path directory does not exist</source>
+        <translation>保存文件夹不存在</translation>
+    </message>
+</context>
+<context>
     <name>MoveDialog</name>
     <message>
         <source>Current Step: %1</source>
@@ -181,9 +189,14 @@
         <translation>生成CSV文件失败</translation>
     </message>
     <message>
-        <location filename="worker.cpp" line="61"/>
+        <location filename="worker.cpp" line="63"/>
         <source>make QRcode image failed</source>
         <translation>生成二维码原图失败</translation>
+    </message>
+    <message>
+        <location filename="worker.cpp" line="75"/>
+        <source>save QRcode image failed</source>
+        <translation>保存二维码文件失败</translation>
     </message>
 </context>
 </TS>

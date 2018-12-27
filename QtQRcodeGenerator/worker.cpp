@@ -21,10 +21,11 @@ Worker::~Worker()
 bool Worker::createCSVFile()
 {
 	QString csvFileName = QString("readme.csv");
+	QString currentPath = QDir::currentPath();
 	QString csvFilePath = m_savingPath;
-	csvFilePath.append("/%1").arg(csvFileName);
-	QDir::setCurrent(m_savingPath);
-	m_csvFile.setFileName(csvFileName);
+	csvFilePath.append(QString("/%1").arg(csvFileName));
+	m_csvFile.setFileName(csvFilePath);
+
 	if (m_csvFile.open(QIODevice::ReadWrite))
 	{
 		return true;
@@ -67,6 +68,10 @@ void Worker::process()
 		if (imagePainter.saveImage())
 		{
 			emit progressChanged(i - nStartId + 1);
+		}
+		else
+		{
+			emit error(tr("save QRcode image failed"));
 		}
 		QString record;
 		record.append(id);

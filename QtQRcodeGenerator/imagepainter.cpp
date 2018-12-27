@@ -119,7 +119,7 @@ bool ImagePainter::saveImage()
 {
 	if (!isSavingPathExist(m_savingPath))
 	{
-		// do something
+		return false;
 	}
 	QString filePath = m_savingPath;
 	filePath.append("/");
