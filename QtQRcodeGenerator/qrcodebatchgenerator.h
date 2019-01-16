@@ -18,6 +18,7 @@ public:
 	~QRcodeBatchGenerator();
 
 public slots:
+	void on_btnGenerateOne_clicked();
 	void on_pushButtonGenerate_clicked();
 	void onError(const QString &errorString);
 	void onFinished();
@@ -33,6 +34,8 @@ private:
 	void showErrors(const QString &errString);
 
 	void reset();
+
+	void makeQRcodeWidthLogo(const QString &data, const QImage &logo);
 
 private:
 	Ui::QRcodeBatchGenerator *ui;

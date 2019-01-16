@@ -4,11 +4,13 @@
 
 #include <QPainter>
 #include <QDir>
+#include <QPixmap>
 
 ImagePainter::ImagePainter(QObject *parent)
 	: QObject(parent), m_backgroudImage(0)
 {
 	generateBGImage();
+	makeLogoIamge();
 }
 
 ImagePainter::~ImagePainter()
@@ -27,6 +29,7 @@ bool ImagePainter::makeQRcodeImage()
 	m_data = QString("edu#patrol#");
 	m_data.append(base64Data);
 	QRCodeUtil::getQRImage(m_sourceImage, m_data.toUtf8(), 10, QColor("#000000"));
+
 	if (m_sourceImage.isNull())
 	{
 		return false;
@@ -35,6 +38,37 @@ bool ImagePainter::makeQRcodeImage()
 	{
 		return true;
 	}
+}
+
+void ImagePainter::makeQRcodeImageWithData(const QString &data)
+{
+	QRCodeUtil::getQRImage(m_sourceImage, data.toUtf8(), 10, QColor("#000000"));
+	m_sourceImage.save("origine.png");
+}
+
+bool ImagePainter::makeLogoIamge()
+{
+
+	// create white background curtain
+	QImage bgImage = QImage(QSize(70, 70), QImage::Format_RGBA8888);
+	bgImage.fill(Qt::transparent);
+
+	QPainter painter(&bgImage);
+	
+	painter.setPen(Qt::NoPen);
+	painter.setBrush(Qt::white);
+	painter.drawRoundedRect(bgImage.rect().adjusted(1, 1, -1, -1), 5, 5);
+
+	QImage logoImage(":/images/logo.png");
+	logoImage = logoImage.scaled(QSize(60, 60), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+	
+	//draw logoImage on BG
+	painter.drawImage(5,5, logoImage);
+
+	m_logoImage = new QImage(bgImage);
+
+	bgImage.save("temp.png");
+	return true;
 }
 
 QString ImagePainter::data() const
@@ -93,6 +127,13 @@ void ImagePainter::drawQRcode()
 	QRect targetRect(padder, padder, padder + scaledSize.width(), padder + scaledSize.height());
 	
 	painter.drawImage(QPoint(padder, padder), m_sourceImage);
+
+	// darw logo on QRcode image
+	int halfSourceWidth = m_backgroudImage->width()/2;
+	int halfSourceHeight = m_backgroudImage->height()/2;
+	painter.drawImage(halfSourceWidth - 35, halfSourceHeight - 35, *m_logoImage);
+
+	QSize size = m_logoImage->size();
 }
 
 void ImagePainter::drawText()
@@ -121,9 +162,16 @@ bool ImagePainter::saveImage()
 	{
 		return false;
 	}
+
+	QString name = m_id;
+	if (name.isEmpty())
+	{
+		name = "temp";
+	}
+
 	QString filePath = m_savingPath;
 	filePath.append("/");
-	filePath.append(m_id);
+	filePath.append(name);
 	filePath.append(".png");
 	return m_backgroudImage->save(filePath);
 }

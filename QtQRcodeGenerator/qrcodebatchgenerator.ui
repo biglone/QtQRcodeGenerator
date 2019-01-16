@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>260</y>
+     <y>220</y>
      <width>281</width>
      <height>41</height>
     </rect>
@@ -62,7 +62,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>200</y>
+     <y>180</y>
      <width>281</width>
      <height>23</height>
     </rect>
@@ -70,6 +70,35 @@
    <property name="value">
     <number>24</number>
    </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>290</y>
+     <width>281</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QLabel" name="labelData">
+      <property name="text">
+       <string>数据:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="leditData"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btnGenerateOne">
+      <property name="text">
+       <string>生成一张</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

@@ -10,12 +10,16 @@ class ImagePainter : public QObject
 	Q_OBJECT
 
 public:
-	ImagePainter(QObject *parent);
+	ImagePainter(QObject *parent = 0);
 	~ImagePainter();
 
 	void setSourceQRcodeImage(const QImage &sourceImage);
 
 	bool makeQRcodeImage();
+
+	void makeQRcodeImageWithData(const QString &data);
+
+	bool makeLogoIamge(); // 60x60 with 5px space 
 
 	void setId(const QString &id);
 
@@ -34,6 +38,7 @@ public:
 	QString data() const;
 private:
 	QImage *m_backgroudImage;
+	QImage *m_logoImage;
 	QImage m_sourceImage;
 	QString m_id;
 	QString m_savingPath;

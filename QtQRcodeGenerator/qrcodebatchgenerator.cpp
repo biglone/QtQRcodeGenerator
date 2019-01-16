@@ -168,3 +168,30 @@ void QRcodeBatchGenerator::on_pushButtonGenerate_clicked()
 
 	m_thread->start();
 }
+
+void QRcodeBatchGenerator::on_btnGenerateOne_clicked()
+{
+	if (ui->leditData->text().isEmpty())
+	{
+		QMessageBox::information(this, tr("Tip"), tr("Data is empty, please "));
+		return;
+	}
+
+	QString data = ui->leditData->text().trimmed();
+	makeQRcodeWidthLogo(data, QImage(":/images/logo.png"));
+}
+
+void QRcodeBatchGenerator::makeQRcodeWidthLogo(const QString &data, const QImage &logo)
+{
+	if (data.isEmpty() || logo.isNull())
+	{
+		return;
+	}
+	QString savingPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+	ImagePainter imagePainter;
+	imagePainter.makeQRcodeImageWithData(data);
+	imagePainter.drawQRcode();
+
+	imagePainter.setSavingPath(savingPath);
+	imagePainter.saveImage();
+}

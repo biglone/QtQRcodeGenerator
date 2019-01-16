@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_QRcodeBatchGenerator_t {
-    QByteArrayData data[8];
-    char stringdata[107];
+    QByteArrayData data[9];
+    char stringdata[133];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,18 +30,20 @@ struct qt_meta_stringdata_QRcodeBatchGenerator_t {
 static const qt_meta_stringdata_QRcodeBatchGenerator_t qt_meta_stringdata_QRcodeBatchGenerator = {
     {
 QT_MOC_LITERAL(0, 0, 20), // "QRcodeBatchGenerator"
-QT_MOC_LITERAL(1, 21, 29), // "on_pushButtonGenerate_clicked"
-QT_MOC_LITERAL(2, 51, 0), // ""
-QT_MOC_LITERAL(3, 52, 7), // "onError"
-QT_MOC_LITERAL(4, 60, 11), // "errorString"
-QT_MOC_LITERAL(5, 72, 10), // "onFinished"
-QT_MOC_LITERAL(6, 83, 17), // "onProgressChanged"
-QT_MOC_LITERAL(7, 101, 5) // "value"
+QT_MOC_LITERAL(1, 21, 25), // "on_btnGenerateOne_clicked"
+QT_MOC_LITERAL(2, 47, 0), // ""
+QT_MOC_LITERAL(3, 48, 29), // "on_pushButtonGenerate_clicked"
+QT_MOC_LITERAL(4, 78, 7), // "onError"
+QT_MOC_LITERAL(5, 86, 11), // "errorString"
+QT_MOC_LITERAL(6, 98, 10), // "onFinished"
+QT_MOC_LITERAL(7, 109, 17), // "onProgressChanged"
+QT_MOC_LITERAL(8, 127, 5) // "value"
 
     },
-    "QRcodeBatchGenerator\0on_pushButtonGenerate_clicked\0"
-    "\0onError\0errorString\0onFinished\0"
-    "onProgressChanged\0value"
+    "QRcodeBatchGenerator\0on_btnGenerateOne_clicked\0"
+    "\0on_pushButtonGenerate_clicked\0onError\0"
+    "errorString\0onFinished\0onProgressChanged\0"
+    "value"
 };
 #undef QT_MOC_LITERAL
 
@@ -51,7 +53,7 @@ static const uint qt_meta_data_QRcodeBatchGenerator[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -59,16 +61,18 @@ static const uint qt_meta_data_QRcodeBatchGenerator[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   34,    2, 0x0a /* Public */,
-       3,    1,   35,    2, 0x0a /* Public */,
-       5,    0,   38,    2, 0x0a /* Public */,
-       6,    1,   39,    2, 0x0a /* Public */,
+       1,    0,   39,    2, 0x0a /* Public */,
+       3,    0,   40,    2, 0x0a /* Public */,
+       4,    1,   41,    2, 0x0a /* Public */,
+       6,    0,   44,    2, 0x0a /* Public */,
+       7,    1,   45,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,    4,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,    7,
+    QMetaType::Void, QMetaType::QString,    5,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    8,
 
        0        // eod
 };
@@ -78,10 +82,11 @@ void QRcodeBatchGenerator::qt_static_metacall(QObject *_o, QMetaObject::Call _c,
     if (_c == QMetaObject::InvokeMetaMethod) {
         QRcodeBatchGenerator *_t = static_cast<QRcodeBatchGenerator *>(_o);
         switch (_id) {
-        case 0: _t->on_pushButtonGenerate_clicked(); break;
-        case 1: _t->onError((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 2: _t->onFinished(); break;
-        case 3: _t->onProgressChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 0: _t->on_btnGenerateOne_clicked(); break;
+        case 1: _t->on_pushButtonGenerate_clicked(); break;
+        case 2: _t->onError((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 3: _t->onFinished(); break;
+        case 4: _t->onProgressChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -112,13 +117,13 @@ int QRcodeBatchGenerator::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

@@ -8,5 +8,6 @@
         <file alias="down.png">images/down.png</file>
         <file alias="up.png">images/up.png</file>
         <file>icon.png</file>
+        <file alias="logo.png">images/logo.png</file>
     </qresource>
 </RCC>

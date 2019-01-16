@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -35,6 +36,11 @@ public:
     QLabel *labelGenerateNum;
     QLineEdit *lineEditGenerateNum;
     QProgressBar *progressBar;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout;
+    QLabel *labelData;
+    QLineEdit *leditData;
+    QPushButton *btnGenerateOne;
 
     void setupUi(QDialog *QRcodeBatchGenerator)
     {
@@ -43,7 +49,7 @@ public:
         QRcodeBatchGenerator->resize(363, 383);
         pushButtonGenerate = new QPushButton(QRcodeBatchGenerator);
         pushButtonGenerate->setObjectName(QStringLiteral("pushButtonGenerate"));
-        pushButtonGenerate->setGeometry(QRect(40, 260, 281, 41));
+        pushButtonGenerate->setGeometry(QRect(40, 220, 281, 41));
         layoutWidget = new QWidget(QRcodeBatchGenerator);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
         layoutWidget->setGeometry(QRect(40, 60, 281, 111));
@@ -74,8 +80,31 @@ public:
 
         progressBar = new QProgressBar(QRcodeBatchGenerator);
         progressBar->setObjectName(QStringLiteral("progressBar"));
-        progressBar->setGeometry(QRect(40, 200, 281, 23));
+        progressBar->setGeometry(QRect(40, 180, 281, 23));
         progressBar->setValue(24);
+        widget = new QWidget(QRcodeBatchGenerator);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(40, 290, 281, 25));
+        horizontalLayout = new QHBoxLayout(widget);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        labelData = new QLabel(widget);
+        labelData->setObjectName(QStringLiteral("labelData"));
+
+        horizontalLayout->addWidget(labelData);
+
+        leditData = new QLineEdit(widget);
+        leditData->setObjectName(QStringLiteral("leditData"));
+
+        horizontalLayout->addWidget(leditData);
+
+        btnGenerateOne = new QPushButton(widget);
+        btnGenerateOne->setObjectName(QStringLiteral("btnGenerateOne"));
+
+        horizontalLayout->addWidget(btnGenerateOne);
+
 
         retranslateUi(QRcodeBatchGenerator);
 
@@ -88,6 +117,8 @@ public:
         pushButtonGenerate->setText(QApplication::translate("QRcodeBatchGenerator", "\345\274\200\345\247\213\347\224\237\346\210\220", 0));
         labelStartId->setText(QApplication::translate("QRcodeBatchGenerator", "\350\265\267\345\247\213ID\357\274\232", 0));
         labelGenerateNum->setText(QApplication::translate("QRcodeBatchGenerator", "\347\224\237\346\210\220\344\270\252\346\225\260\357\274\232", 0));
+        labelData->setText(QApplication::translate("QRcodeBatchGenerator", "\346\225\260\346\215\256:", 0));
+        btnGenerateOne->setText(QApplication::translate("QRcodeBatchGenerator", "\347\224\237\346\210\220\344\270\200\345\274\240", 0));
     } // retranslateUi
 
 };
