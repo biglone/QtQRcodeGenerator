@@ -173,7 +173,7 @@ void QRcodeBatchGenerator::on_btnGenerateOne_clicked()
 {
 	if (ui->leditData->text().isEmpty())
 	{
-		QMessageBox::information(this, tr("Tip"), tr("Data is empty, please "));
+		QMessageBox::information(this, tr("Tip"), tr("Data is empty, please fill it."));
 		return;
 	}
 

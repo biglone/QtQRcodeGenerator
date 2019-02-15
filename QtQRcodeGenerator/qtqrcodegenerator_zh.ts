@@ -4,9 +4,8 @@
 <context>
     <name>ImagePainter</name>
     <message>
-        <location filename="imagepainter.cpp" line="122"/>
         <source>saving path directory does not exist</source>
-        <translation>保存文件夹不存在</translation>
+        <translation type="vanished">保存文件夹不存在</translation>
     </message>
 </context>
 <context>
@@ -47,6 +46,16 @@
         <translation></translation>
     </message>
     <message>
+        <location filename="qrcodebatchgenerator.ui" line="87"/>
+        <source>数据:</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="qrcodebatchgenerator.ui" line="97"/>
+        <source>生成一张</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="qrcodebatchgenerator.cpp" line="49"/>
         <source>QRcode</source>
         <translation>二维码</translation>
@@ -54,6 +63,7 @@
     <message>
         <location filename="qrcodebatchgenerator.cpp" line="82"/>
         <location filename="qrcodebatchgenerator.cpp" line="112"/>
+        <location filename="qrcodebatchgenerator.cpp" line="176"/>
         <source>Tip</source>
         <translation>提示</translation>
     </message>
@@ -71,6 +81,19 @@
         <location filename="qrcodebatchgenerator.cpp" line="132"/>
         <source>please make sure that start ID is pure number</source>
         <translation>请确保输入的起始ID为纯数字</translation>
+    </message>
+    <message>
+        <location filename="qrcodebatchgenerator.cpp" line="176"/>
+        <source>Data is empty, please fill it.</source>
+        <translation>数据为空，请填写。</translation>
+    </message>
+    <message>
+        <source>please make sure that generate more than one qrcode</source>
+        <translation type="vanished">请确保至少生成一张二维码</translation>
+    </message>
+    <message>
+        <source>Data is empty, please fill it</source>
+        <translation type="vanished">数据为空，请填写。</translation>
     </message>
     <message>
         <location filename="qrcodebatchgenerator.cpp" line="139"/>
@@ -189,12 +212,12 @@
         <translation>生成CSV文件失败</translation>
     </message>
     <message>
-        <location filename="worker.cpp" line="63"/>
+        <location filename="worker.cpp" line="62"/>
         <source>make QRcode image failed</source>
         <translation>生成二维码原图失败</translation>
     </message>
     <message>
-        <location filename="worker.cpp" line="75"/>
+        <location filename="worker.cpp" line="74"/>
         <source>save QRcode image failed</source>
         <translation>保存二维码文件失败</translation>
     </message>
