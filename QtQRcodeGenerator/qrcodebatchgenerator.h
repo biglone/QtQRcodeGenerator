@@ -20,6 +20,9 @@ public:
 public slots:
 	void on_btnGenerateOne_clicked();
 	void on_pushButtonGenerate_clicked();
+
+	void on_btnOpenExcelFile_clicked();
+	void on_btnGenerateNew_clicked();
 	void onError(const QString &errorString);
 	void onFinished();
 	void onProgressChanged(int value);

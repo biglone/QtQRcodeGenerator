@@ -6,100 +6,211 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>363</width>
-    <height>383</height>
+    <width>433</width>
+    <height>389</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>QRcodeBatchGenerator</string>
   </property>
-  <widget class="QPushButton" name="pushButtonGenerate">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>220</y>
-     <width>281</width>
-     <height>41</height>
-    </rect>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
    </property>
-   <property name="text">
-    <string>开始生成</string>
+   <property name="leftMargin">
+    <number>0</number>
    </property>
-  </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>60</y>
-     <width>281</width>
-     <height>111</height>
-    </rect>
+   <property name="topMargin">
+    <number>0</number>
    </property>
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QLabel" name="labelStartId">
-      <property name="text">
-       <string>起始ID：</string>
-      </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Tab 1</string>
+      </attribute>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>20</y>
+         <width>281</width>
+         <height>111</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelStartId">
+          <property name="text">
+           <string>起始ID：</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="lineEditStartID"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="labelGenerateNum">
+          <property name="text">
+           <string>生成个数：</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="lineEditGenerateNum"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QProgressBar" name="progressBar">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>160</y>
+         <width>281</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="value">
+        <number>24</number>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonGenerate">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>200</y>
+         <width>281</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>开始生成</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>90</x>
+         <y>250</y>
+         <width>281</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="labelData">
+          <property name="text">
+           <string>数据:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="leditData"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnGenerateOne">
+          <property name="text">
+           <string>生成一张</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="lineEditStartID"/>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="labelGenerateNum">
-      <property name="text">
-       <string>生成个数：</string>
-      </property>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Tab 2</string>
+      </attribute>
+      <widget class="QPushButton" name="btnGenerateNew">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>220</y>
+         <width>281</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>生成</string>
+       </property>
+      </widget>
+      <widget class="QProgressBar" name="progressBarNew">
+       <property name="geometry">
+        <rect>
+         <x>67</x>
+         <y>160</y>
+         <width>331</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="value">
+        <number>24</number>
+       </property>
+      </widget>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>50</y>
+         <width>177</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="labelStartId_2">
+          <property name="text">
+           <string>起始ID</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEditStartIDNew"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>100</y>
+         <width>288</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLabel" name="labelExcelFilename">
+          <property name="text">
+           <string>Excel文件名</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEditFileName"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnOpenExcelFile">
+          <property name="text">
+           <string>打开文件</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="lineEditGenerateNum"/>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QProgressBar" name="progressBar">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>180</y>
-     <width>281</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="value">
-    <number>24</number>
-   </property>
-  </widget>
-  <widget class="QWidget" name="">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>290</y>
-     <width>281</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="QLabel" name="labelData">
-      <property name="text">
-       <string>数据:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="leditData"/>
-    </item>
-    <item>
-     <widget class="QPushButton" name="btnGenerateOne">
-      <property name="text">
-       <string>生成一张</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

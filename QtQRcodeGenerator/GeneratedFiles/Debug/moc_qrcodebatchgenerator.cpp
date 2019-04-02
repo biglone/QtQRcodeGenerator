@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_QRcodeBatchGenerator_t {
-    QByteArrayData data[9];
-    char stringdata[133];
+    QByteArrayData data[11];
+    char stringdata[187];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,15 +33,19 @@ QT_MOC_LITERAL(0, 0, 20), // "QRcodeBatchGenerator"
 QT_MOC_LITERAL(1, 21, 25), // "on_btnGenerateOne_clicked"
 QT_MOC_LITERAL(2, 47, 0), // ""
 QT_MOC_LITERAL(3, 48, 29), // "on_pushButtonGenerate_clicked"
-QT_MOC_LITERAL(4, 78, 7), // "onError"
-QT_MOC_LITERAL(5, 86, 11), // "errorString"
-QT_MOC_LITERAL(6, 98, 10), // "onFinished"
-QT_MOC_LITERAL(7, 109, 17), // "onProgressChanged"
-QT_MOC_LITERAL(8, 127, 5) // "value"
+QT_MOC_LITERAL(4, 78, 27), // "on_btnOpenExcelFile_clicked"
+QT_MOC_LITERAL(5, 106, 25), // "on_btnGenerateNew_clicked"
+QT_MOC_LITERAL(6, 132, 7), // "onError"
+QT_MOC_LITERAL(7, 140, 11), // "errorString"
+QT_MOC_LITERAL(8, 152, 10), // "onFinished"
+QT_MOC_LITERAL(9, 163, 17), // "onProgressChanged"
+QT_MOC_LITERAL(10, 181, 5) // "value"
 
     },
     "QRcodeBatchGenerator\0on_btnGenerateOne_clicked\0"
-    "\0on_pushButtonGenerate_clicked\0onError\0"
+    "\0on_pushButtonGenerate_clicked\0"
+    "on_btnOpenExcelFile_clicked\0"
+    "on_btnGenerateNew_clicked\0onError\0"
     "errorString\0onFinished\0onProgressChanged\0"
     "value"
 };
@@ -53,7 +57,7 @@ static const uint qt_meta_data_QRcodeBatchGenerator[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -61,18 +65,22 @@ static const uint qt_meta_data_QRcodeBatchGenerator[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   39,    2, 0x0a /* Public */,
-       3,    0,   40,    2, 0x0a /* Public */,
-       4,    1,   41,    2, 0x0a /* Public */,
-       6,    0,   44,    2, 0x0a /* Public */,
-       7,    1,   45,    2, 0x0a /* Public */,
+       1,    0,   49,    2, 0x0a /* Public */,
+       3,    0,   50,    2, 0x0a /* Public */,
+       4,    0,   51,    2, 0x0a /* Public */,
+       5,    0,   52,    2, 0x0a /* Public */,
+       6,    1,   53,    2, 0x0a /* Public */,
+       8,    0,   56,    2, 0x0a /* Public */,
+       9,    1,   57,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,    5,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,    8,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   10,
 
        0        // eod
 };
@@ -84,9 +92,11 @@ void QRcodeBatchGenerator::qt_static_metacall(QObject *_o, QMetaObject::Call _c,
         switch (_id) {
         case 0: _t->on_btnGenerateOne_clicked(); break;
         case 1: _t->on_pushButtonGenerate_clicked(); break;
-        case 2: _t->onError((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 3: _t->onFinished(); break;
-        case 4: _t->onProgressChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 2: _t->on_btnOpenExcelFile_clicked(); break;
+        case 3: _t->on_btnGenerateNew_clicked(); break;
+        case 4: _t->onError((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 5: _t->onFinished(); break;
+        case 6: _t->onProgressChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -117,13 +127,13 @@ int QRcodeBatchGenerator::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 7)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 5;
+        _id -= 7;
     }
     return _id;
 }

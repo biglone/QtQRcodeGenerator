@@ -48,7 +48,6 @@ void ImagePainter::makeQRcodeImageWithData(const QString &data)
 
 bool ImagePainter::makeLogoIamge()
 {
-
 	// create white background curtain
 	QImage bgImage = QImage(QSize(70, 70), QImage::Format_RGBA8888);
 	bgImage.fill(Qt::transparent);

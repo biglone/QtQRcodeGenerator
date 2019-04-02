@@ -11,6 +11,7 @@
 #include <QDir>
 #include <QThread>
 #include <QFile>
+#include <QFileDialog>
 
 QRcodeBatchGenerator::QRcodeBatchGenerator(QWidget *parent)
 	: QDialog(parent), m_inOperating(false)
@@ -167,6 +168,27 @@ void QRcodeBatchGenerator::on_pushButtonGenerate_clicked()
 	connect(worker, SIGNAL(progressChanged(int)), SLOT(onProgressChanged(int)));
 
 	m_thread->start();
+}
+
+void QRcodeBatchGenerator::on_btnGenerateNew_clicked()
+{
+	QString startId = ui->lineEditStartIDNew->text().trimmed();
+	if (startId.isEmpty())
+	{
+		dealWithErrors(tr("start ID and generate num can not be empty"));
+		return;
+	}
+
+	
+}
+
+void QRcodeBatchGenerator::on_btnOpenExcelFile_clicked()
+{
+	QString excleFileName = QFileDialog::getOpenFileName(this, tr("Open File"),
+		QString(),
+		tr("Excel Files (*.xlsx)"));
+
+	ui->lineEditFileName->setText(excleFileName);
 }
 
 void QRcodeBatchGenerator::on_btnGenerateOne_clicked()
