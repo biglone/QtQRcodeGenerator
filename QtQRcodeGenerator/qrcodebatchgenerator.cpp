@@ -5,6 +5,11 @@
 #include "QRCodeUtil.h"
 #include "worker.h"
 
+#include "xlsx/xlsxdocument.h"
+#include "xlsx/xlsxabstractsheet.h"
+#include "xlsx/xlsxworkbook.h"
+#include "patrolinfo.h"
+
 #include <QMessageBox>
 #include <QDesktopServices>
 #include <QDateTime>
@@ -12,6 +17,17 @@
 #include <QThread>
 #include <QFile>
 #include <QFileDialog>
+
+static const char *PATROL_NAME = "patrolName";
+static const char *AREA_NAME = "areaName";
+static const char *PEOPLE_IN_CHARGE = "peopleInCharge";
+static const char *PERIOD = "period";
+static const char *WEEK_DAYS = "weekDays";
+static const char *START_TIME = "startTime";
+static const char *END_TIME = "endTime";
+static const char *END_DAY = "endDay";
+static const char *PATROL_TIMES_PER_DAY = "patrolTimesPerDay";
+static const char *PATROL_TRRGET = "patrolTarget";
 
 QRcodeBatchGenerator::QRcodeBatchGenerator(QWidget *parent)
 	: QDialog(parent), m_inOperating(false)
@@ -172,10 +188,18 @@ void QRcodeBatchGenerator::on_pushButtonGenerate_clicked()
 
 void QRcodeBatchGenerator::on_btnGenerateNew_clicked()
 {
+	createDirectory();
 	QString startId = ui->lineEditStartIDNew->text().trimmed();
 	if (startId.isEmpty())
 	{
 		dealWithErrors(tr("start ID and generate num can not be empty"));
+		return;
+	}
+
+	QString excelFileName = ui->lineEditFileName->text().trimmed();
+	if (excelFileName.isEmpty())
+	{
+		dealWithErrors(tr("open the excel file first"));
 		return;
 	}
 
@@ -216,4 +240,80 @@ void QRcodeBatchGenerator::makeQRcodeWidthLogo(const QString &data, const QImage
 
 	imagePainter.setSavingPath(savingPath);
 	imagePainter.saveImage();
+}
+
+QList<PatrolInfo> QRcodeBatchGenerator::readPatrolInfoFromFile(const QString &fileName)
+{
+	QList<PatrolInfo> patrolInfos;
+	if (fileName.isEmpty())
+	{
+		return patrolInfos;
+	}
+
+	QXlsx::Document xlsx(QStringLiteral("patrolPoint2user.xlsx"));
+	QXlsx::Workbook *workBook = xlsx.workbook();
+	QXlsx::Worksheet *workSheet = static_cast<QXlsx::Worksheet*>(workBook->sheet(0));
+
+	int rowCount = workSheet->dimension().rowCount();
+	int columnCount = workSheet->dimension().columnCount();
+
+	QStringList titles;
+	// get first row titles;
+	for (int i = 1; i <= columnCount; ++i)
+	{
+		titles << workSheet->read(1, i).toString();
+	}
+
+	QList<PatrolInfo> patrolInfos;
+
+	for (int i = 2; i <= rowCount; ++i)
+	{
+		PatrolInfo info;
+		for (int j = 1; j <= columnCount; ++j)
+		{
+			QString content = workSheet->read(i, j).toString();
+			QString title = titles[j- 1];
+			if (PATROL_NAME == title)
+			{
+				info.setPatrolName(content);
+			}
+			else if (AREA_NAME == title)
+			{
+				info.setAreaName(content);
+			}
+			else if (PEOPLE_IN_CHARGE == title)
+			{
+				info.setPeopleInCharege(content);
+			}
+			else if (PERIOD == title)
+			{
+				info.setPeriod(content);
+			}
+			else if (WEEK_DAYS == title)
+			{
+				info.setWeekDays(content);
+			}
+			else if (START_TIME == title)
+			{
+				info.setStartTime(content);
+			}
+			else if (END_TIME == title)
+			{
+				info.setEndTime(content);
+			}
+			else if (END_DAY == title)
+			{
+				info.setEndDay(content);
+			}
+			else if (PATROL_TIMES_PER_DAY == title)
+			{
+				info.setPatrolTimesPerDay(content);
+			}
+			else if (PATROL_TRRGET == title)
+			{
+				info.setPatrolTarget(content);
+			}
+		}
+		patrolInfos.append(info);
+	}
 }

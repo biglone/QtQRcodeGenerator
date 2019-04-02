@@ -6,6 +6,7 @@
 #include <QThread>
 
 class ImagePainter;
+class PatrolInfo;
 
 namespace Ui {class QRcodeBatchGenerator;};
 
@@ -40,6 +41,7 @@ private:
 
 	void makeQRcodeWidthLogo(const QString &data, const QImage &logo);
 
+	void readPatrolInfoFromFile(const QString &fileName);
 private:
 	Ui::QRcodeBatchGenerator *ui;
 	QString m_path;
