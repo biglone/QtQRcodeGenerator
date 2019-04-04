@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>433</width>
-    <height>389</height>
+    <width>423</width>
+    <height>361</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,175 +38,188 @@
       <attribute name="title">
        <string>Tab 1</string>
       </attribute>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>80</x>
-         <y>20</y>
-         <width>281</width>
-         <height>111</height>
-        </rect>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="spacing">
+        <number>20</number>
        </property>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0">
-         <widget class="QLabel" name="labelStartId">
-          <property name="text">
-           <string>起始ID：</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEditStartID"/>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="labelGenerateNum">
-          <property name="text">
-           <string>生成个数：</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEditGenerateNum"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QProgressBar" name="progressBar">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>160</y>
-         <width>281</width>
-         <height>23</height>
-        </rect>
+       <property name="leftMargin">
+        <number>0</number>
        </property>
-       <property name="value">
-        <number>24</number>
+       <property name="topMargin">
+        <number>0</number>
        </property>
-      </widget>
-      <widget class="QPushButton" name="pushButtonGenerate">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>200</y>
-         <width>281</width>
-         <height>41</height>
-        </rect>
+       <property name="rightMargin">
+        <number>0</number>
        </property>
-       <property name="text">
-        <string>开始生成</string>
+       <property name="bottomMargin">
+        <number>0</number>
        </property>
-      </widget>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>250</y>
-         <width>281</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QLabel" name="labelData">
-          <property name="text">
-           <string>数据:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="leditData"/>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btnGenerateOne">
-          <property name="text">
-           <string>生成一张</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
+       <item>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelStartId">
+           <property name="text">
+            <string>起始ID：</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="lineEditStartID"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="labelGenerateNum">
+           <property name="text">
+            <string>生成个数：</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="lineEditGenerateNum"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="progressBar">
+         <property name="value">
+          <number>24</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonGenerate">
+         <property name="text">
+          <string>开始生成</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="labelData">
+           <property name="text">
+            <string>数据:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="leditData"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnGenerateOne">
+           <property name="text">
+            <string>生成一张</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>137</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
        <string>Tab 2</string>
       </attribute>
-      <widget class="QPushButton" name="btnGenerateNew">
-       <property name="geometry">
-        <rect>
-         <x>80</x>
-         <y>220</y>
-         <width>281</width>
-         <height>41</height>
-        </rect>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>20</number>
        </property>
-       <property name="text">
-        <string>生成</string>
+       <property name="leftMargin">
+        <number>0</number>
        </property>
-      </widget>
-      <widget class="QProgressBar" name="progressBarNew">
-       <property name="geometry">
-        <rect>
-         <x>67</x>
-         <y>160</y>
-         <width>331</width>
-         <height>23</height>
-        </rect>
+       <property name="topMargin">
+        <number>0</number>
        </property>
-       <property name="value">
-        <number>24</number>
+       <property name="rightMargin">
+        <number>0</number>
        </property>
-      </widget>
-      <widget class="QWidget" name="">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>50</y>
-         <width>177</width>
-         <height>22</height>
-        </rect>
+       <property name="bottomMargin">
+        <number>0</number>
        </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QLabel" name="labelStartId_2">
-          <property name="text">
-           <string>起始ID</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEditStartIDNew"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>100</y>
-         <width>288</width>
-         <height>25</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
-         <widget class="QLabel" name="labelExcelFilename">
-          <property name="text">
-           <string>Excel文件名</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEditFileName"/>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btnOpenExcelFile">
-          <property name="text">
-           <string>打开文件</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetFixedSize</enum>
+         </property>
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelStartId_2">
+           <property name="text">
+            <string>起始ID</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QLabel" name="lblDepartName">
+           <property name="text">
+            <string>单位名称</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0" colspan="3">
+          <widget class="QLabel" name="labelExcelFilename">
+           <property name="text">
+            <string>文件</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="3">
+          <widget class="QLineEdit" name="lineEditFileName"/>
+         </item>
+         <item row="2" column="4">
+          <widget class="QPushButton" name="btnOpenExcelFile">
+           <property name="text">
+            <string>打开文件</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLineEdit" name="lineEditDepartName"/>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLineEdit" name="lineEditStartIDNew"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="progressBarNew">
+         <property name="value">
+          <number>24</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnGenerateNew">
+         <property name="text">
+          <string>生成</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>153</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>

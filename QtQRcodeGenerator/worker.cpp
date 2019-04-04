@@ -7,10 +7,6 @@
 Worker::Worker(const QString &startId, const QString &path, const int generateCount)
 	:m_startId(startId), m_savingPath(path), m_generateCount(generateCount)
 {
-	if (!createCSVFile())
-	{
-		emit error(tr("create csv file failed"));
-	}
 }
 
 Worker::~Worker()
@@ -38,6 +34,11 @@ bool Worker::createCSVFile()
 
 void Worker::process()
 {
+	if (!createCSVFile())
+	{
+		emit error(tr("create csv file failed"));
+	}
+
 	QTextStream textStream;
 	textStream.setDevice(&m_csvFile);
 	QString header;

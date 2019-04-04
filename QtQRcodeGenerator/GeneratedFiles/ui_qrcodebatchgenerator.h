@@ -21,6 +21,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -33,7 +34,7 @@ public:
     QVBoxLayout *verticalLayout;
     QTabWidget *tabWidget;
     QWidget *tab;
-    QWidget *layoutWidget;
+    QVBoxLayout *verticalLayout_3;
     QGridLayout *gridLayout;
     QLabel *labelStartId;
     QLineEdit *lineEditStartID;
@@ -41,29 +42,30 @@ public:
     QLineEdit *lineEditGenerateNum;
     QProgressBar *progressBar;
     QPushButton *pushButtonGenerate;
-    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout;
     QLabel *labelData;
     QLineEdit *leditData;
     QPushButton *btnGenerateOne;
+    QSpacerItem *verticalSpacer_4;
     QWidget *tab_2;
-    QPushButton *btnGenerateNew;
-    QProgressBar *progressBarNew;
-    QWidget *widget;
-    QHBoxLayout *horizontalLayout_2;
+    QVBoxLayout *verticalLayout_2;
+    QGridLayout *gridLayout_2;
     QLabel *labelStartId_2;
-    QLineEdit *lineEditStartIDNew;
-    QWidget *widget1;
-    QHBoxLayout *horizontalLayout_3;
+    QLabel *lblDepartName;
     QLabel *labelExcelFilename;
     QLineEdit *lineEditFileName;
     QPushButton *btnOpenExcelFile;
+    QLineEdit *lineEditDepartName;
+    QLineEdit *lineEditStartIDNew;
+    QProgressBar *progressBarNew;
+    QPushButton *btnGenerateNew;
+    QSpacerItem *verticalSpacer_3;
 
     void setupUi(QDialog *QRcodeBatchGenerator)
     {
         if (QRcodeBatchGenerator->objectName().isEmpty())
             QRcodeBatchGenerator->setObjectName(QStringLiteral("QRcodeBatchGenerator"));
-        QRcodeBatchGenerator->resize(433, 389);
+        QRcodeBatchGenerator->resize(423, 361);
         verticalLayout = new QVBoxLayout(QRcodeBatchGenerator);
         verticalLayout->setSpacing(0);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -73,114 +75,137 @@ public:
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
-        layoutWidget = new QWidget(tab);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(80, 20, 281, 111));
-        gridLayout = new QGridLayout(layoutWidget);
+        verticalLayout_3 = new QVBoxLayout(tab);
+        verticalLayout_3->setSpacing(20);
+        verticalLayout_3->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
+        gridLayout = new QGridLayout();
         gridLayout->setSpacing(6);
-        gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        gridLayout->setContentsMargins(0, 0, 0, 0);
-        labelStartId = new QLabel(layoutWidget);
+        labelStartId = new QLabel(tab);
         labelStartId->setObjectName(QStringLiteral("labelStartId"));
 
         gridLayout->addWidget(labelStartId, 0, 0, 1, 1);
 
-        lineEditStartID = new QLineEdit(layoutWidget);
+        lineEditStartID = new QLineEdit(tab);
         lineEditStartID->setObjectName(QStringLiteral("lineEditStartID"));
 
         gridLayout->addWidget(lineEditStartID, 0, 1, 1, 1);
 
-        labelGenerateNum = new QLabel(layoutWidget);
+        labelGenerateNum = new QLabel(tab);
         labelGenerateNum->setObjectName(QStringLiteral("labelGenerateNum"));
 
         gridLayout->addWidget(labelGenerateNum, 1, 0, 1, 1);
 
-        lineEditGenerateNum = new QLineEdit(layoutWidget);
+        lineEditGenerateNum = new QLineEdit(tab);
         lineEditGenerateNum->setObjectName(QStringLiteral("lineEditGenerateNum"));
 
         gridLayout->addWidget(lineEditGenerateNum, 1, 1, 1, 1);
 
+
+        verticalLayout_3->addLayout(gridLayout);
+
         progressBar = new QProgressBar(tab);
         progressBar->setObjectName(QStringLiteral("progressBar"));
-        progressBar->setGeometry(QRect(90, 160, 281, 23));
         progressBar->setValue(24);
+
+        verticalLayout_3->addWidget(progressBar);
+
         pushButtonGenerate = new QPushButton(tab);
         pushButtonGenerate->setObjectName(QStringLiteral("pushButtonGenerate"));
-        pushButtonGenerate->setGeometry(QRect(90, 200, 281, 41));
-        layoutWidget1 = new QWidget(tab);
-        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(90, 250, 281, 25));
-        horizontalLayout = new QHBoxLayout(layoutWidget1);
+
+        verticalLayout_3->addWidget(pushButtonGenerate);
+
+        horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
-        horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        labelData = new QLabel(layoutWidget1);
+        labelData = new QLabel(tab);
         labelData->setObjectName(QStringLiteral("labelData"));
 
         horizontalLayout->addWidget(labelData);
 
-        leditData = new QLineEdit(layoutWidget1);
+        leditData = new QLineEdit(tab);
         leditData->setObjectName(QStringLiteral("leditData"));
 
         horizontalLayout->addWidget(leditData);
 
-        btnGenerateOne = new QPushButton(layoutWidget1);
+        btnGenerateOne = new QPushButton(tab);
         btnGenerateOne->setObjectName(QStringLiteral("btnGenerateOne"));
 
         horizontalLayout->addWidget(btnGenerateOne);
 
+
+        verticalLayout_3->addLayout(horizontalLayout);
+
+        verticalSpacer_4 = new QSpacerItem(20, 137, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_3->addItem(verticalSpacer_4);
+
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
-        btnGenerateNew = new QPushButton(tab_2);
-        btnGenerateNew->setObjectName(QStringLiteral("btnGenerateNew"));
-        btnGenerateNew->setGeometry(QRect(80, 220, 281, 41));
-        progressBarNew = new QProgressBar(tab_2);
-        progressBarNew->setObjectName(QStringLiteral("progressBarNew"));
-        progressBarNew->setGeometry(QRect(67, 160, 331, 23));
-        progressBarNew->setValue(24);
-        widget = new QWidget(tab_2);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(70, 50, 177, 22));
-        horizontalLayout_2 = new QHBoxLayout(widget);
-        horizontalLayout_2->setSpacing(6);
-        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        labelStartId_2 = new QLabel(widget);
+        verticalLayout_2 = new QVBoxLayout(tab_2);
+        verticalLayout_2->setSpacing(20);
+        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        gridLayout_2 = new QGridLayout();
+        gridLayout_2->setSpacing(6);
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        gridLayout_2->setSizeConstraint(QLayout::SetFixedSize);
+        labelStartId_2 = new QLabel(tab_2);
         labelStartId_2->setObjectName(QStringLiteral("labelStartId_2"));
 
-        horizontalLayout_2->addWidget(labelStartId_2);
+        gridLayout_2->addWidget(labelStartId_2, 0, 0, 1, 1);
 
-        lineEditStartIDNew = new QLineEdit(widget);
-        lineEditStartIDNew->setObjectName(QStringLiteral("lineEditStartIDNew"));
+        lblDepartName = new QLabel(tab_2);
+        lblDepartName->setObjectName(QStringLiteral("lblDepartName"));
 
-        horizontalLayout_2->addWidget(lineEditStartIDNew);
+        gridLayout_2->addWidget(lblDepartName, 1, 0, 1, 2);
 
-        widget1 = new QWidget(tab_2);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(70, 100, 288, 25));
-        horizontalLayout_3 = new QHBoxLayout(widget1);
-        horizontalLayout_3->setSpacing(6);
-        horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        labelExcelFilename = new QLabel(widget1);
+        labelExcelFilename = new QLabel(tab_2);
         labelExcelFilename->setObjectName(QStringLiteral("labelExcelFilename"));
 
-        horizontalLayout_3->addWidget(labelExcelFilename);
+        gridLayout_2->addWidget(labelExcelFilename, 2, 0, 1, 3);
 
-        lineEditFileName = new QLineEdit(widget1);
+        lineEditFileName = new QLineEdit(tab_2);
         lineEditFileName->setObjectName(QStringLiteral("lineEditFileName"));
 
-        horizontalLayout_3->addWidget(lineEditFileName);
+        gridLayout_2->addWidget(lineEditFileName, 2, 3, 1, 1);
 
-        btnOpenExcelFile = new QPushButton(widget1);
+        btnOpenExcelFile = new QPushButton(tab_2);
         btnOpenExcelFile->setObjectName(QStringLiteral("btnOpenExcelFile"));
 
-        horizontalLayout_3->addWidget(btnOpenExcelFile);
+        gridLayout_2->addWidget(btnOpenExcelFile, 2, 4, 1, 1);
+
+        lineEditDepartName = new QLineEdit(tab_2);
+        lineEditDepartName->setObjectName(QStringLiteral("lineEditDepartName"));
+
+        gridLayout_2->addWidget(lineEditDepartName, 1, 3, 1, 1);
+
+        lineEditStartIDNew = new QLineEdit(tab_2);
+        lineEditStartIDNew->setObjectName(QStringLiteral("lineEditStartIDNew"));
+
+        gridLayout_2->addWidget(lineEditStartIDNew, 0, 3, 1, 1);
+
+
+        verticalLayout_2->addLayout(gridLayout_2);
+
+        progressBarNew = new QProgressBar(tab_2);
+        progressBarNew->setObjectName(QStringLiteral("progressBarNew"));
+        progressBarNew->setValue(24);
+
+        verticalLayout_2->addWidget(progressBarNew);
+
+        btnGenerateNew = new QPushButton(tab_2);
+        btnGenerateNew->setObjectName(QStringLiteral("btnGenerateNew"));
+
+        verticalLayout_2->addWidget(btnGenerateNew);
+
+        verticalSpacer_3 = new QSpacerItem(20, 153, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_2->addItem(verticalSpacer_3);
 
         tabWidget->addTab(tab_2, QString());
 
@@ -204,10 +229,11 @@ public:
         labelData->setText(QApplication::translate("QRcodeBatchGenerator", "\346\225\260\346\215\256:", 0));
         btnGenerateOne->setText(QApplication::translate("QRcodeBatchGenerator", "\347\224\237\346\210\220\344\270\200\345\274\240", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("QRcodeBatchGenerator", "Tab 1", 0));
-        btnGenerateNew->setText(QApplication::translate("QRcodeBatchGenerator", "\347\224\237\346\210\220", 0));
         labelStartId_2->setText(QApplication::translate("QRcodeBatchGenerator", "\350\265\267\345\247\213ID", 0));
-        labelExcelFilename->setText(QApplication::translate("QRcodeBatchGenerator", "Excel\346\226\207\344\273\266\345\220\215", 0));
+        lblDepartName->setText(QApplication::translate("QRcodeBatchGenerator", "\345\215\225\344\275\215\345\220\215\347\247\260", 0));
+        labelExcelFilename->setText(QApplication::translate("QRcodeBatchGenerator", "\346\226\207\344\273\266", 0));
         btnOpenExcelFile->setText(QApplication::translate("QRcodeBatchGenerator", "\346\211\223\345\274\200\346\226\207\344\273\266", 0));
+        btnGenerateNew->setText(QApplication::translate("QRcodeBatchGenerator", "\347\224\237\346\210\220", 0));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("QRcodeBatchGenerator", "Tab 2", 0));
     } // retranslateUi
 

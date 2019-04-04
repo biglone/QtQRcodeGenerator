@@ -12,7 +12,7 @@ class NewPlateWorker : public QObject
 	Q_OBJECT
 
 public:
-	NewPlateWorker(const QString &startId, const QString &path, const QList<PatrolInfo > &infos);
+	NewPlateWorker(const QString &startId, const QString &path, const QList<PatrolInfo > &infos, const QString &departName);
 	~NewPlateWorker();
 
 public slots:
@@ -30,6 +30,7 @@ private:
 	QString m_startId;
 	QFile m_csvFile;
 	QString m_savingPath;
+	QString m_departName;
 	QList<PatrolInfo> m_patrolInfos;
 };
 

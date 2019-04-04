@@ -204,6 +204,21 @@
     <ClCompile Include="xlsx\xlsxzipwriter.cpp">
       <Filter>xlsx</Filter>
     </ClCompile>
+    <ClCompile Include="patrolinfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="newplateworker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_newplateworker.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_newplateworker.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Template\moc_newplateworker.cpp">
+      <Filter>Generated Files\Template</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_qtqrcodegenerator.h">
@@ -350,6 +365,9 @@
     <ClInclude Include="xlsx\xlsxzipwriter_p.h">
       <Filter>xlsx</Filter>
     </ClInclude>
+    <ClInclude Include="patrolinfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="qtqrcodegenerator.h">
@@ -375,6 +393,9 @@
     </CustomBuild>
     <CustomBuild Include="xlsx\xlsxdocument.h">
       <Filter>xlsx</Filter>
+    </CustomBuild>
+    <CustomBuild Include="newplateworker.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

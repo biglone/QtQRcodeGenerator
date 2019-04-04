@@ -4,6 +4,7 @@
 #include "imagepainter.h"
 #include "QRCodeUtil.h"
 #include "worker.h"
+#include "newplateworker.h"
 
 #include "xlsx/xlsxdocument.h"
 #include "xlsx/xlsxabstractsheet.h"
@@ -30,7 +31,8 @@ static const char *PATROL_TIMES_PER_DAY = "patrolTimesPerDay";
 static const char *PATROL_TRRGET = "patrolTarget";
 
 QRcodeBatchGenerator::QRcodeBatchGenerator(QWidget *parent)
-	: QDialog(parent), m_inOperating(false)
+	: QDialog(parent), m_inOperating(false), m_thread(0), 
+	  m_threadNewPlate(0), m_inOperatingNew(false)
 {
 	ui = new Ui::QRcodeBatchGenerator();
 	ui->setupUi(this);
@@ -46,9 +48,13 @@ QRcodeBatchGenerator::QRcodeBatchGenerator(QWidget *parent)
 		background: rgb(0, 160, 230);\
 	}");
 	ui->progressBar->setStyleSheet(progressStyleSheet);
+	ui->progressBarNew->setStyleSheet(progressStyleSheet);
 	ui->progressBar->setMinimum(0);
-	ui->progressBar->setMaximum(0);
+	ui->progressBarNew->setMaximum(0);
 	ui->progressBar->hide();
+	ui->progressBarNew->hide();
+
+	ui->lineEditFileName->setReadOnly(true);
 }
 
 QRcodeBatchGenerator::~QRcodeBatchGenerator()
@@ -72,9 +78,34 @@ void QRcodeBatchGenerator::createDirectory()
 	m_path = dir.path();
 }
 
+void QRcodeBatchGenerator::createDirectoryNew()
+{
+	QString deskTopPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+
+	QDateTime dateTime = QDateTime::currentDateTime();
+	QString folerName = dateTime.toString("yyyy-MM-dd HHmmss");
+	folerName.append("_");
+	folerName.append(tr("QRcode"));
+
+	QDir dir(deskTopPath);
+
+	dir.mkdir(folerName);
+	dir.cd(folerName);
+	m_pathNew = dir.path();
+}
+
 void QRcodeBatchGenerator::removeDirectory()
 {
 	QDir createdDir(m_path);
+	if (createdDir.exists())
+	{
+		createdDir.removeRecursively();
+	}
+}
+
+void QRcodeBatchGenerator::removeDirectoryNew()
+{
+	QDir createdDir(m_pathNew);
 	if (createdDir.exists())
 	{
 		createdDir.removeRecursively();
@@ -87,8 +118,25 @@ void QRcodeBatchGenerator::dealWithErrors(const QString &errString)
 	{
 		showErrors(errString);
 	}
-	
-	removeDirectory();
+
+	if (m_inOperating)
+	{
+		removeDirectory();
+	}
+	reset();
+}
+
+void QRcodeBatchGenerator::dealWithErrorsNew(const QString &errString)
+{
+	if (!errString.isEmpty())
+	{
+		showErrors(errString);
+	}
+
+	if (m_inOperatingNew)
+	{
+		removeDirectoryNew();
+	}
 	reset();
 }
 
@@ -102,7 +150,18 @@ void QRcodeBatchGenerator::showErrors(const QString &errString)
 
 void QRcodeBatchGenerator::reset()
 {
-	m_inOperating = false;
+	if (m_inOperating)
+	{
+		m_inOperating = false;
+	}
+}
+
+void QRcodeBatchGenerator::resetNew()
+{
+	if (m_inOperatingNew)
+	{
+		m_inOperatingNew = false;
+	}
 }
 
 void QRcodeBatchGenerator::onError(const QString &errorString)
@@ -114,12 +173,25 @@ void QRcodeBatchGenerator::onError(const QString &errorString)
 void QRcodeBatchGenerator::onFinished()
 {
 	//ui->progressBa
-	m_inOperating = false;
+	if (m_inOperating)
+	{
+		m_inOperating = false;
+	}
+	
+	if (m_inOperatingNew)
+	{
+		m_inOperatingNew = false;
+	}	
 }
 
 void QRcodeBatchGenerator::onProgressChanged(int value)
 {
 	ui->progressBar->setValue(value);
+}
+
+void QRcodeBatchGenerator::onNewProGressChanged(int value)
+{
+	ui->progressBarNew->setValue(value);
 }
 
 void QRcodeBatchGenerator::on_pushButtonGenerate_clicked()
@@ -188,11 +260,26 @@ void QRcodeBatchGenerator::on_pushButtonGenerate_clicked()
 
 void QRcodeBatchGenerator::on_btnGenerateNew_clicked()
 {
-	createDirectory();
+	if (m_inOperatingNew)
+	{
+		QMessageBox::information(this, tr("Tip"), tr("It's working now, please wait."));
+		return;
+	}
+
+	m_inOperatingNew = true;
+
+	createDirectoryNew();
 	QString startId = ui->lineEditStartIDNew->text().trimmed();
 	if (startId.isEmpty())
 	{
 		dealWithErrors(tr("start ID and generate num can not be empty"));
+		return;
+	}
+
+	QString departName = ui->lineEditDepartName->text().trimmed();
+	if (departName.isEmpty())
+	{
+		dealWithErrors(tr("depart name is empty"));
 		return;
 	}
 
@@ -203,7 +290,31 @@ void QRcodeBatchGenerator::on_btnGenerateNew_clicked()
 		return;
 	}
 
-	
+	QList<PatrolInfo> patrolInfos = readPatrolInfoFromFile(excelFileName);
+	if (patrolInfos.isEmpty())
+	{
+		dealWithErrors(tr("partro info is empty from excel file"));
+		return;
+	}
+
+	int infoCount = patrolInfos.count();
+
+	ui->progressBarNew->setMaximum(infoCount);
+	ui->progressBarNew->setVisible(true);
+	m_threadNewPlate = new QThread;
+
+	NewPlateWorker *newPlateWorker = new NewPlateWorker(startId, m_pathNew, patrolInfos, departName);
+
+	newPlateWorker->moveToThread(m_threadNewPlate);
+
+	connect(newPlateWorker, SIGNAL(error(QString)), this, SLOT(onError(QString)));
+	connect(m_threadNewPlate, SIGNAL(started()), newPlateWorker, SLOT(process()));
+	connect(newPlateWorker, SIGNAL(finished()), newPlateWorker, SLOT(deleteLater()));
+	connect(newPlateWorker, SIGNAL(finished()), this, SLOT(onFinished()));
+	connect(m_threadNewPlate, SIGNAL(finished()), m_threadNewPlate, SLOT(deleteLater()));
+	connect(newPlateWorker, SIGNAL(progressChanged(int)), SLOT(onNewProGressChanged(int)));
+
+	m_threadNewPlate->start();
 }
 
 void QRcodeBatchGenerator::on_btnOpenExcelFile_clicked()
@@ -250,7 +361,7 @@ QList<PatrolInfo> QRcodeBatchGenerator::readPatrolInfoFromFile(const QString &fi
 		return patrolInfos;
 	}
 
-	QXlsx::Document xlsx(QStringLiteral("patrolPoint2user.xlsx"));
+	QXlsx::Document xlsx(fileName);
 	QXlsx::Workbook *workBook = xlsx.workbook();
 	QXlsx::Worksheet *workSheet = static_cast<QXlsx::Worksheet*>(workBook->sheet(0));
 
@@ -263,8 +374,6 @@ QList<PatrolInfo> QRcodeBatchGenerator::readPatrolInfoFromFile(const QString &fi
 	{
 		titles << workSheet->read(1, i).toString();
 	}
-
-	QList<PatrolInfo> patrolInfos;
 
 	for (int i = 2; i <= rowCount; ++i)
 	{
@@ -316,4 +425,6 @@ QList<PatrolInfo> QRcodeBatchGenerator::readPatrolInfoFromFile(const QString &fi
 		}
 		patrolInfos.append(info);
 	}
+
+	return patrolInfos;
 }
