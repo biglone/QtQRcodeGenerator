@@ -155,8 +155,9 @@ void ImagePainter::setQRCodeImageSize(const QSize &size)
 	m_sourceImage = m_sourceImage.scaled(size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 }
 
-void ImagePainter::drawNewPlateQRcode(const QPoint &startPoint)
+void ImagePainter::drawNewPlateQRcode()
 {
+	QPoint startPoint(m_padding, m_padding);
 	QPainter painter(m_backgroudImage);
 	painter.drawImage(startPoint, m_sourceImage);
 	//m_backgroudImage->save("step1.png");
@@ -204,17 +205,14 @@ bool ImagePainter::saveImage()
 
 int ImagePainter::drawSchoolName(const QString &name)
 {
-	// set text font and size
-	QFont font("Microsoft YaHei", 12);
-	font.setBold(true);
 	QPainter painter(m_backgroudImage);
-	painter.setFont(font);
+	painter.setFont(m_departNameFont);
 
-	QFontMetrics fontMetrics(font);
+	QFontMetrics fontMetrics(m_departNameFont);
 	
 	int flags = Qt::TextWordWrap | Qt::AlignCenter;
 
-	QRect textRect = fontMetrics.boundingRect(10, 330, 300, 0, flags, name);
+	QRect textRect = fontMetrics.boundingRect(m_padding, m_sourceImage.height() + m_padding + m_textPadding, m_sourceImage.width(), 0, flags, name);
 	//textRect.adjust(0, 0, 0, 10);
 	painter.drawText(textRect, flags, name);
 
@@ -226,15 +224,14 @@ int ImagePainter::drawSchoolName(const QString &name)
 void ImagePainter::drawDescriptionInfo(int currentHeight)
 {
 	QString info = tr("patrol description");
-	QFont font("Microsoft YaHei", 12);
-	font.setBold(true);
-	QPainter painter(m_backgroudImage);
-	painter.setFont(font);
 
-	QFontMetrics fontMetrics(font);
+	QPainter painter(m_backgroudImage);
+	painter.setFont(m_descriptionFont);
+
+	QFontMetrics fontMetrics(m_descriptionFont);
 
 	int flags = Qt::AlignLeft | Qt::TextWordWrap;
-	QRect textRect = fontMetrics.boundingRect(10, currentHeight + 10, m_backgroudImage->width() - 20, 0, flags, info);
+	QRect textRect = fontMetrics.boundingRect(m_padding, currentHeight + m_lineSpacing, m_backgroudImage->width() - m_padding * 2, 0, flags, info);
 
 	painter.drawText(textRect, flags, info);
 
@@ -250,20 +247,40 @@ void ImagePainter::drawPatrolInfo(const PatrolInfo &info)
 	currentHeight = drawPatrolTimesPerDay(info.patrolTimesPerDay(), currentHeight);
 }
 
+void ImagePainter::setPaddings(int padding, int textPadding, int lineSpacing)
+{
+	m_padding = padding;
+	m_textPadding = textPadding;
+	m_lineSpacing = lineSpacing;
+}
+
+void ImagePainter::setDepartNameFont(const QFont &font)
+{
+	m_departNameFont = font;
+}
+
+void ImagePainter::setDescriptionFont(const QFont &font)
+{
+	m_descriptionFont = font;
+}
+
+void ImagePainter::setPatrolInfoFont(const QFont &font)
+{
+	m_patrolInfoFont = font;
+}
+
 int ImagePainter::drawPatrolName(const QString &name)
 {
 	QString patrolPoint = tr("patrolPoint: ");
 	patrolPoint.append(name);
 
-	QFont font("Microsoft YaHei", 12);
-	font.setBold(true);
 	QPainter painter(m_backgroudImage);
-	painter.setFont(font);
+	painter.setFont(m_patrolInfoFont);
 
-	QFontMetrics fontMetrics(font);
+	QFontMetrics fontMetrics(m_patrolInfoFont);
 
 	int flags = Qt::AlignLeft | Qt::TextWordWrap;
-	QRect textRect = fontMetrics.boundingRect(10 + 300 + 10, 10, m_backgroudImage->width() - 20 - 300, 0, flags, patrolPoint);
+	QRect textRect = fontMetrics.boundingRect(m_padding + m_sourceImage.width() + m_textPadding, m_padding, m_backgroudImage->width() - m_padding - m_textPadding - m_sourceImage.width(), 0, flags, patrolPoint);
 	
 	painter.drawText(textRect, flags, patrolPoint);
 
@@ -278,15 +295,13 @@ int ImagePainter::drawPatrolPoepleInCharge(const QString &peopleInCharge, int he
 	QString nameOfPeopleInCharge = tr("people in charge: ");
 	nameOfPeopleInCharge.append(peopleInCharge);
 
-	QFont font("Microsoft YaHei", 12);
-	font.setBold(true);
 	QPainter painter(m_backgroudImage);
-	painter.setFont(font);
+	painter.setFont(m_patrolInfoFont);
 
-	QFontMetrics fontMetrics(font);
+	QFontMetrics fontMetrics(m_patrolInfoFont);
 
 	int flags = Qt::AlignLeft | Qt::TextWordWrap;
-	QRect textRect = fontMetrics.boundingRect(10 + 300 + 10, height + 10, m_backgroudImage->width() - 20 - 300, 0, flags, nameOfPeopleInCharge);
+	QRect textRect = fontMetrics.boundingRect(m_padding + m_sourceImage.width() + m_textPadding, height + m_lineSpacing, m_backgroudImage->width() - m_padding - m_textPadding - m_sourceImage.width(), 0, flags, nameOfPeopleInCharge);
 
 	painter.drawText(textRect, flags, nameOfPeopleInCharge);
 
@@ -303,15 +318,14 @@ int ImagePainter::drawPatrolTimePeriod(const QString &startTime, const QString &
 	timePeriod.append("-");
 	timePeriod.append(endTime);
 
-	QFont font("Microsoft YaHei", 12);
-	font.setBold(true);
-	QPainter painter(m_backgroudImage);
-	painter.setFont(font);
 
-	QFontMetrics fontMetrics(font);
+	QPainter painter(m_backgroudImage);
+	painter.setFont(m_patrolInfoFont);
+
+	QFontMetrics fontMetrics(m_patrolInfoFont);
 
 	int flags = Qt::AlignLeft | Qt::TextWordWrap;
-	QRect textRect = fontMetrics.boundingRect(10 + 300 + 10, height + 10, m_backgroudImage->width() - 20 - 300, 0, flags, timePeriod);
+	QRect textRect = fontMetrics.boundingRect(m_padding + m_sourceImage.width() + m_textPadding, height + m_lineSpacing, m_backgroudImage->width() - m_padding - m_sourceImage.width() - m_textPadding, 0, flags, timePeriod);
 
 	painter.drawText(textRect, flags, timePeriod);
 
@@ -359,15 +373,13 @@ int ImagePainter::drawPatrolWeekDays(const QString &weekDays,  int height)
 		patrolWeekDays.append(weekDaysChinese.join(", "));
 	}
 
-	QFont font("Microsoft YaHei", 12);
-	font.setBold(true);
 	QPainter painter(m_backgroudImage);
-	painter.setFont(font);
+	painter.setFont(m_patrolInfoFont);
 
-	QFontMetrics fontMetrics(font);
+	QFontMetrics fontMetrics(m_patrolInfoFont);
 
 	int flags = Qt::AlignLeft | Qt::TextWordWrap;
-	QRect textRect = fontMetrics.boundingRect(10 + 300 + 10, height + 10, m_backgroudImage->width() - 20 - 300, 0, flags, patrolWeekDays);
+	QRect textRect = fontMetrics.boundingRect(m_padding + m_sourceImage.width() + m_textPadding, height + m_lineSpacing, m_backgroudImage->width() - m_padding - m_sourceImage.width() - m_textPadding, 0, flags, patrolWeekDays);
 
 	painter.drawText(textRect, flags, patrolWeekDays);
 
@@ -382,15 +394,13 @@ int ImagePainter::drawPatrolTimesPerDay(const QString &timesPerDay, int height)
 	patrolTimesPerDay.append(timesPerDay);
 	patrolTimesPerDay.append(tr("times"));
 
-	QFont font("Microsoft YaHei", 12);
-	font.setBold(true);
 	QPainter painter(m_backgroudImage);
-	painter.setFont(font);
+	painter.setFont(m_patrolInfoFont);
 
-	QFontMetrics fontMetrics(font);
+	QFontMetrics fontMetrics(m_patrolInfoFont);
 
 	int flags = Qt::AlignLeft | Qt::TextWordWrap;
-	QRect textRect = fontMetrics.boundingRect(10 + 300 + 10, height + 10, m_backgroudImage->width() - 20 - 300, 0, flags, patrolTimesPerDay);
+	QRect textRect = fontMetrics.boundingRect(m_padding + m_sourceImage.width() + m_textPadding, height + m_lineSpacing, m_backgroudImage->width() - m_padding - m_sourceImage.width() - m_textPadding, 0, flags, patrolTimesPerDay);
 
 	painter.drawText(textRect, flags, patrolTimesPerDay);
 

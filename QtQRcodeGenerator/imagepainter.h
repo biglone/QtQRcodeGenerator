@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QImage>
 #include <QColor>
+#include <QFont>
 
 class ImagePainter : public QObject
 {
@@ -33,7 +34,7 @@ public:
 
 	void drawQRcode();
 
-	void drawNewPlateQRcode(const QPoint &startPoint);
+	void drawNewPlateQRcode();
 
 	void drawLogoOnQRCode();
 
@@ -51,6 +52,12 @@ public:
 
 	void drawPatrolInfo(const PatrolInfo &info);
 
+	void setPaddings(int padding, int textPadding, int lineSpacing);
+
+	void setDepartNameFont(const QFont &font);
+	void setDescriptionFont(const QFont &font);
+	void setPatrolInfoFont(const QFont &font);
+
 private:
 	int drawPatrolName(const QString &name);
 	int drawPatrolPoepleInCharge(const QString &peopleInCharge, int height);
@@ -65,6 +72,14 @@ private:
 	QString m_id;
 	QString m_savingPath;
 	QString m_data;
+
+	int m_padding;
+	int m_textPadding;
+	int m_lineSpacing;
+
+	QFont m_departNameFont;
+	QFont m_descriptionFont;
+	QFont m_patrolInfoFont;
 };
 
 #endif // IMAGEPAINTER_H

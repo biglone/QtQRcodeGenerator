@@ -87,7 +87,9 @@ void NewPlateWorker::process()
 		QString id = QString("%1").arg(i, width, 10, QLatin1Char('0'));
 
 		ImagePainter imagePainter(this);
-		imagePainter.generateBGImage(QSize(600, 600));
+		imagePainter.setPaddings(10, 10, 5);
+
+		imagePainter.generateBGImage(QSize(300, 300));
 		
 		imagePainter.setId(id);
 		if (!imagePainter.makeQRcodeImage())
@@ -96,11 +98,20 @@ void NewPlateWorker::process()
 			return;
 		}
 
-		imagePainter.setQRCodeImageSize(QSize(300, 300));
+		imagePainter.setQRCodeImageSize(QSize(150, 150));
 		imagePainter.drawLogoOnQRCode();
-		imagePainter.drawNewPlateQRcode(QPoint(10, 10));
-		int currentHeight = imagePainter.drawSchoolName(m_departName);
+		imagePainter.drawNewPlateQRcode();
 
+		// set text font
+		QFont font("Microsoft YaHei", 12);
+		font.setBold(true);
+
+		imagePainter.setDepartNameFont(font);
+		imagePainter.setDescriptionFont(font);
+		font.setPointSize(10);
+		imagePainter.setPatrolInfoFont(font);
+
+		int currentHeight = imagePainter.drawSchoolName(m_departName);
 		imagePainter.drawDescriptionInfo(currentHeight);
 		imagePainter.drawPatrolInfo(m_patrolInfos[i - nStartId]);
 
